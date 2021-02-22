@@ -1,8 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
 .App {
-    height: 100%;
-    text-align: center;
-    font-size: calc(10px + 1.5vmin);
-    display: flex;
-    flex-direction: column;
-  }
-  
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-brand {
+  padding: 0 2vw;
+  user-select: none;
+}
+
+.navbar-collapse {
+  justify-content: flex-end;
+}

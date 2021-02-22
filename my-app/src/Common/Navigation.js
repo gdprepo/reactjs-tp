@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,6 +8,7 @@ import {
   Switch,
   Link,
 } from "react-router-dom";
+import { Navbar } from "../components";
 // import { Players } from "../Players/Players";
 // import { Questions } from "../Questions/Questions";
 // import { Stats } from "../Stats/Stats";
@@ -43,7 +45,7 @@ const Navigation = () => {
     (state) => state.user.isAuthenticated
   );
 
-  console.log(isAuthenticated);
+  console.log("isAuthenticated", isAuthenticated);
   const player = useSelector((state) => state.user.player);
  // const isLoading = useSelector((state) => state.app.isLoading);
   const dispatch = useDispatch();
@@ -51,34 +53,16 @@ const Navigation = () => {
     dispatch(launchSequence());
   }, [dispatch]);
   return (
-    <Router>
-      {isAuthenticated ? (
-        <div className="header">
-          <Link to="/" className="app-name">
-            <img src="/assets/logo.png" alt="Blind test logo" />
-            Blind-Test Back-Office
-          </Link>
-          <div className="app-links">
-            <Link to="/questions">Questions</Link>
-            <Link to="/players">Joueurs</Link>
-            <Link
-              to="/auth"
-              onClick={() => disconnectUser()}
-              className="sign-out-button"
-            >
-              Sign Out
-              <img src={player.avatar} alt="User avatar" />
-            </Link>
-          </div>
-        </div>
-      ) : undefined}
-      <Switch>
-        <Route path="/auth">
-          <Authenticate />
-        </Route>
-
-      </Switch>
-    </Router>
+    <Navbar isAuth={isAuthenticated}/>
+    // <Router>
+    //   {isAuthenticated ? (true) : (
+    //   <Switch>
+    //     <Route path="/auth">
+    //       <Authenticate />
+    //     </Route>
+    //   </Switch>
+    // )}
+    // </Router>
   );
 };
 
