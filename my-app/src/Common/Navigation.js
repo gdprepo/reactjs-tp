@@ -1,0 +1,85 @@
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  Route,
+  Redirect,
+  BrowserRouter as Router,
+  Switch,
+  Link,
+} from "react-router-dom";
+// import { Players } from "../Players/Players";
+// import { Questions } from "../Questions/Questions";
+// import { Stats } from "../Stats/Stats";
+import { Authenticate } from "../User/Authenticate";
+import { disconnectUser } from "../User/userEffects";
+import { launchSequence } from "./appEffects";
+import "./Navigation.css";
+
+const PrivateRoute = ({ children, ...rest }) => {
+  const isAuthenticated = useSelector(
+    (state) => state.user.isAuthenticated
+  );
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        isAuthenticated ? (
+          children
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/auth",
+              state: { from: location },
+            }}
+          />
+        )
+      }
+    />
+  );
+};
+
+const Navigation = () => {
+  const isAuthenticated = useSelector(
+    (state) => state.user.isAuthenticated
+  );
+
+  console.log(isAuthenticated);
+  const player = useSelector((state) => state.user.player);
+ // const isLoading = useSelector((state) => state.app.isLoading);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(launchSequence());
+  }, [dispatch]);
+  return (
+    <Router>
+      {isAuthenticated ? (
+        <div className="header">
+          <Link to="/" className="app-name">
+            <img src="/assets/logo.png" alt="Blind test logo" />
+            Blind-Test Back-Office
+          </Link>
+          <div className="app-links">
+            <Link to="/questions">Questions</Link>
+            <Link to="/players">Joueurs</Link>
+            <Link
+              to="/auth"
+              onClick={() => disconnectUser()}
+              className="sign-out-button"
+            >
+              Sign Out
+              <img src={player.avatar} alt="User avatar" />
+            </Link>
+          </div>
+        </div>
+      ) : undefined}
+      <Switch>
+        <Route path="/auth">
+          <Authenticate />
+        </Route>
+
+      </Switch>
+    </Router>
+  );
+};
+
+export default Navigation;
