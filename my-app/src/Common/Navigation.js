@@ -16,7 +16,7 @@ import { Profile } from "../components";
 import { Authenticate } from "../User/Authenticate";
 import { disconnectUser } from "../User/userEffects";
 import { launchSequence } from "./appEffects";
-import { Game } from "../Game/Game";
+import { Game } from "../components";
 
 import "./Navigation.css";
 import api from "../api";
@@ -58,6 +58,7 @@ const Navigation = () => {
       <Navbar isAuth={isAuthenticated} />
 
       <Router>
+
         {isAuthenticated ? (
           true
         ) : undefined } 
@@ -65,12 +66,14 @@ const Navigation = () => {
             <Route path="/auth">
               <Authenticate />
             </Route>
-            <PrivateRoute path="/">
-              <Profile props={player} />
-            </PrivateRoute>
+
             <PrivateRoute path="/game">
               <Game />
             </PrivateRoute>
+            <PrivateRoute path="/">
+              <Profile props={player} />
+            </PrivateRoute>
+
           </Switch>
         )
       </Router>
