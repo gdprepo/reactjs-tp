@@ -1,7 +1,8 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import {disconnectUser} from '../User/userEffects'
 
 const Collapse = styled.div.attrs({
     className: 'collapse navbar-collapse',
@@ -39,12 +40,14 @@ const Links = ({auth}) => {
                 <Collapse>
                     <List>
                         <Item>{ !auth ? 
-                          (<Link to="" className="nav-link">
-                                S'identifier
+                          (<Link to="/auth" className="nav-link">
+                                Sign in
                             </Link>) :
-                            (<Link to="" className="nav-link">
-                                Mon profil
-                            </Link>)
+                            (
+                            <Link to="/auth" onClick={() => disconnectUser()} className="nav-link">
+                                Sign out
+                            </Link>
+                            )
                         }
 
                         </Item>

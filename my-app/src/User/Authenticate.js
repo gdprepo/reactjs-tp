@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import "./Authenticate.css";
 import { authenticateUser } from "./userEffects";
+import logo from '../assets/logo.png'
+import loadingGif from '../assets/loading.gif';
 
 export const Authenticate = () => {
   const [email, setEmail] = useState("");
@@ -40,13 +42,13 @@ export const Authenticate = () => {
   }, [isAuthenticated, history]);
   return (
     <div className="auth-root">
-      <img src="/assets/logo.png" alt="Blind test logo" />
-      <p>Sign In</p>
+        <img src={logo} width="150" height="150" alt="logo" />
+        <p>Sign In</p>
       {isLoading ? (
         <img
-          src="/assets/spinner.svg"
+          src={loadingGif}
           alt="Loading animation"
-          style={{ height: "50px" }}
+          style={{ height: "200px" }}
         />
       ) : (
         <div className="auth-form">

@@ -7,6 +7,7 @@ const Container = styled.div.attrs({
   className: 'container',
 })`
   width: 100vw;
+  height: 100vh;
   margin: 0;
   padding: 0;
 `
@@ -23,7 +24,7 @@ const Navbar = ({isAuth}) => {
     <Container>
       <Nav>
         <Logo />
-          <Links auth={isAuth}  />
+          <Links auth={isAuth} />
       </Nav>
     </Container>
   )
