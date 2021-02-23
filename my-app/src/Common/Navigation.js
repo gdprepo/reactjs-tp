@@ -16,14 +16,13 @@ import { Profile } from "../components";
 import { Authenticate } from "../User/Authenticate";
 import { disconnectUser } from "../User/userEffects";
 import { launchSequence } from "./appEffects";
+import { Game } from "../Game/Game";
+
 import "./Navigation.css";
 import api from "../api";
 
-
 const PrivateRoute = ({ children, ...rest }) => {
-  const isAuthenticated = useSelector(
-    (state) => state.user.isAuthenticated
-  );
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   return (
     <Route
       {...rest}
@@ -44,40 +43,38 @@ const PrivateRoute = ({ children, ...rest }) => {
 };
 
 const Navigation = () => {
-  const isAuthenticated = useSelector(
-    (state) => state.user.isAuthenticated
-  );
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   console.log("isAuthenticated", isAuthenticated);
   const player = useSelector((state) => state.user.player);
 
- // const isLoading = useSelector((state) => state.app.isLoading);
+  // const isLoading = useSelector((state) => state.app.isLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(launchSequence());
   }, [dispatch]);
   return (
     <>
-      <Navbar isAuth={isAuthenticated}/>
-      { isAuthenticated ? 
-      <Profile props={player}/>
-      
-      : undefined}
-      
-      
-      
+      <Navbar isAuth={isAuthenticated} />
 
+      <Router>
+        {isAuthenticated ? (
+          true
+        ) : undefined } 
+          <Switch>
+            <Route path="/auth">
+              <Authenticate />
+            </Route>
+            <PrivateRoute path="/">
+              <Profile props={player} />
+            </PrivateRoute>
+            <PrivateRoute path="/game">
+              <Game />
+            </PrivateRoute>
+          </Switch>
+        )
+      </Router>
     </>
-
-    // <Router>
-    //   {isAuthenticated ? (true) : (
-    //   <Switch>
-    //     <Route path="/auth">
-    //       <Authenticate />
-    //     </Route>
-    //   </Switch>
-    // )}
-    // </Router>
   );
 };
 
