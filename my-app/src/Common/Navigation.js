@@ -62,6 +62,9 @@ const Navigation = () => {
           <Route path="/auth">
             <Authenticate />
           </Route>
+          <PrivateRoute path="/">
+            <img src="https://www.memesmonkey.com/images/memesmonkey/1a/1a710d5c9ac9c4135ebfccaee2484022.jpeg" alt="Home sweet home" width="400"></img>
+          </PrivateRoute>
           <PrivateRoute path="/questions">
             <p>Link</p>
           </PrivateRoute>
@@ -70,9 +73,6 @@ const Navigation = () => {
           </PrivateRoute>
           <PrivateRoute path="/players">
             <p>Link</p>
-          </PrivateRoute>
-          <PrivateRoute path="/">
-            <img src="https://www.memesmonkey.com/images/memesmonkey/1a/1a710d5c9ac9c4135ebfccaee2484022.jpeg" alt="Home sweet home" width="400"></img>
           </PrivateRoute>
         </Switch>
       )}

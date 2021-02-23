@@ -1,5 +1,5 @@
 import { Provider } from "react-redux";
-import { Navigation} from "./Common/Navigation";
+import Navigation from "./Common/Navigation";
 import { store } from "./Common/store";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
