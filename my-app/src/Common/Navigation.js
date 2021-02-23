@@ -9,6 +9,7 @@ import {
   Link,
 } from "react-router-dom";
 import { Navbar } from "../components";
+import { Profile } from "../components";
 // import { Players } from "../Players/Players";
 // import { Questions } from "../Questions/Questions";
 // import { Stats } from "../Stats/Stats";
@@ -16,6 +17,8 @@ import { Authenticate } from "../User/Authenticate";
 import { disconnectUser } from "../User/userEffects";
 import { launchSequence } from "./appEffects";
 import "./Navigation.css";
+import api from "../api";
+
 
 const PrivateRoute = ({ children, ...rest }) => {
   const isAuthenticated = useSelector(
@@ -47,13 +50,25 @@ const Navigation = () => {
 
   console.log("isAuthenticated", isAuthenticated);
   const player = useSelector((state) => state.user.player);
+
  // const isLoading = useSelector((state) => state.app.isLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(launchSequence());
   }, [dispatch]);
   return (
-    <Navbar isAuth={isAuthenticated}/>
+    <>
+      <Navbar isAuth={isAuthenticated}/>
+      { isAuthenticated ? 
+      <Profile props={player}/>
+      
+      : undefined}
+      
+      
+      
+
+    </>
+
     // <Router>
     //   {isAuthenticated ? (true) : (
     //   <Switch>
