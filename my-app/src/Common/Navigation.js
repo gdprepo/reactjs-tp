@@ -57,11 +57,9 @@ const Navigation = () => {
   }, [dispatch]);
   return isLoading ? (
     <Loadingscreen />
-  ) : (
-    <Router>
-      {isAuthenticated ? (
-        <Navbar isAuth={isAuthenticated}/>
-      ) : (
+  ) : ( 
+  <Router>
+      {isAuthenticated ? <Navbar isAuth={isAuthenticated}/> : undefined}
         <Switch>
           <Route path="/auth">
             <Authenticate />
@@ -79,7 +77,6 @@ const Navigation = () => {
             <Home props={player} />
           </PrivateRoute>
         </Switch>
-        )}
       </Router>
     )
   }
