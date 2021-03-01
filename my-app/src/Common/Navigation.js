@@ -45,8 +45,7 @@ const Navigation = () => {
     (state) => state.user.isAuthenticated
   );
   const player = useSelector((state) => state.user.player);
-  // FIXME I redirect to auth and have isLoading to false
-  const isLoading = useSelector((state) => state.user.isLoading);
+  const isLoading = useSelector((state) => state.app.isLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(launchSequence());
@@ -62,9 +61,6 @@ const Navigation = () => {
           <Route path="/auth">
             <Authenticate />
           </Route>
-          <PrivateRoute path="/">
-            <img src="https://www.memesmonkey.com/images/memesmonkey/1a/1a710d5c9ac9c4135ebfccaee2484022.jpeg" alt="Home sweet home" width="400"></img>
-          </PrivateRoute>
           <PrivateRoute path="/questions">
             <p>Link</p>
           </PrivateRoute>
