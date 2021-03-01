@@ -50,9 +50,13 @@ const Profile = ({props}) => {
   return (
     <Container>
         <h2>Voici les informaitons de votre Profil</h2>
-``        
-        <p>Vous êtes connecter en tant que { props.name }</p>
+      
+        <p>Vous êtes connecter en tant que { props.name } { props.game }</p>
         <img src={props.avatar} alt="User avatar" />
+
+
+ 
+
 
     </Container>
   )

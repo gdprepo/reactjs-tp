@@ -22,6 +22,8 @@ import { Profile } from "../components";
 
 
 import "./Navigation.css";
+import { fetchPlayers } from "./playersEffects";
+
 import api from "../api";
 
 const PrivateRoute = ({ children, ...rest }) => {
@@ -47,12 +49,17 @@ const PrivateRoute = ({ children, ...rest }) => {
 
 const Navigation = () => {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
+  const dispatch = useDispatch();
 
-  console.log("isAuthenticated", isAuthenticated);
+  // console.log("isAuthenticated", isAuthenticated);
   const player = useSelector((state) => state.user.player);
+  // const players = useSelector((state) => state.players);
+  
+  console.log("Player", player);
+
 
   // const isLoading = useSelector((state) => state.app.isLoading);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   useEffect(() => {
     dispatch(launchSequence());
   }, [dispatch]);

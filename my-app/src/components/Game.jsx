@@ -50,15 +50,37 @@ const Game = () => {
     console.log("Score:", score);
     // dispatch(incrementPlayerNbPlayed());
   };
+
+  const Button = styled.button`
+  background-color: black;
+  color: white;
+  float: right;
+  padding: 10px 50px;
+  border-radius: 5px;
+  outline: 0;
+  text-transform: uppercase;
+  margin: 10px 0px;
+  cursor: pointer;
+  box-shadow: 0px 2px 2px lightgray;
+  transition: ease background-color 250ms;
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+  &:disabled {
+    cursor: default;
+    opacity: 0.7;
+  }
+`;
   return (
-    // <Layout
-    //   style={{
-    //     justifyContent: "flex-start",
-    //     alignItems: "center",
-    //     flex: 1,
-    //     padding: 32,
-    //   }}
-    // >
+    <div
+      style={{
+        justifyContent: "flex-start",
+        alignItems: "center",
+        flex: 1,
+        padding: 32,
+      }}
+    >
     <Container>
 
         <h1 style={{ marginBottom: 64 }}>
@@ -66,18 +88,21 @@ const Game = () => {
         </h1>
 
     </Container>
-    //   {answers && answers.length > 0 ? (
-    //     <Layout>
-    //       <Text category="h2">Votre score: {score}</Text>
-    //       <Text category="h3">Merci d'avoir joué</Text>
-    //       <Button onPress={() => getNewGame()}>New Game</Button>
-    //     </Layout>
-    //   ) : questions && questions.length > 0 ? (
-    //     <Gameplay questions={questions} finishGame={finishGame} />
-    //   ) : (
-    //     <Button onPress={() => getNewGame()}>New Game</Button>
-    //   )}
-    // </Layout>
+       {answers && answers.length > 0 ? (
+        <div>
+         <h2>Votre score: {score}</h2>
+          <h3 category="h3">Merci d'avoir joué</h3>
+         <Button onClick={() => getNewGame()}>New Game</Button>
+        </div>
+      ) : questions && questions.length > 0 ? (
+      //  <Gameplay questions={questions} finishGame={finishGame} />
+      <Button onClick={() => getNewGame()}>New Game</Button>
+     
+     
+      ) : (
+        <button onClick={() => getNewGame()}>New Game</button>
+      )}
+    </div>
   );
 };
 
