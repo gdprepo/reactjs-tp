@@ -34,8 +34,7 @@ export const getUserPlayer = (uid, onSuccess) => (dispatch) => {
         });
       } else {
         authError(
-          dispatch,
-          "Vous n'avez pas le droit d'utiliser ce Back-Office !\nVous pouvez demander les droits à un administrateur."
+          dispatch
         );
       }
     } else {

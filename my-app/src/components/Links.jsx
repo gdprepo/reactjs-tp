@@ -1,12 +1,13 @@
 
-import React, { Component } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from "react-redux";
+import {disconnectUser} from '../User/userEffects'
 
 const Collapse = styled.div.attrs({
     className: 'collapse navbar-collapse',
-    id: "navbarSupportedContent"
+    id: "navbarSupportedContent",
 })``
 
 const List = styled.div.attrs({
@@ -15,7 +16,9 @@ const List = styled.div.attrs({
 
 const Item = styled.div.attrs({
     className: 'nav-item',
-})``
+})`
+display: flex;
+`
 
 // FIXME This doesn't work, as usual
 const Button = styled.div.attrs({
@@ -41,17 +44,24 @@ const Links = ({auth}) => {
                 </Button>
                 <Collapse>
                     <List>
-                        <Item >{ !auth ? 
-                          (<Link to="" className="nav-link">
-                                S'identifier
+                        <Item>{ !auth ? 
+                          (<Link to="/auth" className="nav-link">
+                                Sign in
                             </Link>) :
-                            (<Link style={{ width: "160px" }} to="/profile" className="nav-link">
+                            (
+                            <>
+                            <Link style={{ width: "160px" }} to="/profile" className="nav-link">
                                 Mon profil
                                 <img style={{ width:"30%", marginLeft: "20px", borderRadius: "100%" }} src={player.avatar} alt="User avatar" />
 
-                            </Link>)
-                        }
+                            </Link>
 
+                            <Link to="/auth" onClick={() => disconnectUser()} className="nav-link">
+                                Déconnexion
+                            </Link>
+                            </>
+                            )
+                           }
                         </Item>
                     </List>
                 </Collapse>

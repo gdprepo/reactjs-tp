@@ -1,9 +1,9 @@
 import Links from './Links'
 import Logo from './Logo'
 import Navbar from './Navbar'
+import Loadingscreen from './LoadingScreen'
 import Profile from './Profile' 
 import Game from './Game'
 import Home from './Home' 
 
-
-export { Links, Logo, Navbar, Profile, Game, Home }
+export { Links, Logo, Navbar, Profile, Game, Home, Loadingscreen }

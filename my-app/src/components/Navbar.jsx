@@ -23,7 +23,7 @@ const Navbar = ({isAuth}) => {
     <Container>
       <Nav>
         <Logo />
-          <Links auth={isAuth}  />
+          <Links auth={isAuth} />
       </Nav>
     </Container>
   )

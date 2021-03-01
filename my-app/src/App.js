@@ -1,22 +1,23 @@
 import { Provider } from "react-redux";
 import Navigation from "./Common/Navigation";
-import { BrowserRouter as Router } from 'react-router-dom'
 import { store } from "./Common/store";
-import { Navbar } from "./components";
+import { BrowserRouter } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 
 // Providers (store Redux ...)
 
-const App = () => (
+const App = () => {
+
+return (
+  <Provider store={store}>
+  <BrowserRouter>
     <div className="App">
-      <Router>
-          <Provider store={store}>
-            <Navigation />
-          </Provider>
-      </Router>
+      <Navigation />
     </div>
-);
+  </BrowserRouter>
+  </Provider>
+   )};
 
 export default App;

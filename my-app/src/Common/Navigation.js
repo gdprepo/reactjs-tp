@@ -8,14 +8,13 @@ import {
   Switch,
   Link,
 } from "react-router-dom";
-import { Navbar } from "../components";
+import { Navbar, Loadingscreen } from "../components";
 import { Home } from "../components";
 
 // import { Players } from "../Players/Players";
 // import { Questions } from "../Questions/Questions";
 // import { Stats } from "../Stats/Stats";
 import { Authenticate } from "../User/Authenticate";
-import { disconnectUser } from "../User/userEffects";
 import { launchSequence } from "./appEffects";
 import { Game } from "../components";
 import { Profile } from "../components";
@@ -24,6 +23,7 @@ import { Profile } from "../components";
 import "./Navigation.css";
 import { fetchPlayers } from "./playersEffects";
 
+// import loadingGif from '../assets/loading.gif';
 import api from "../api";
 
 const PrivateRoute = ({ children, ...rest }) => {
@@ -48,27 +48,20 @@ const PrivateRoute = ({ children, ...rest }) => {
 };
 
 const Navigation = () => {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-  const dispatch = useDispatch();
-
-  // console.log("isAuthenticated", isAuthenticated);
+  const isAuthenticated = useSelector(
+    (state) => state.user.isAuthenticated
+  );
   const player = useSelector((state) => state.user.player);
-  // const players = useSelector((state) => state.players);
-  
-  console.log("Player", player);
-
-
-  // const isLoading = useSelector((state) => state.app.isLoading);
-  // const dispatch = useDispatch();
+  const isLoading = useSelector((state) => state.app.isLoading);
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(launchSequence());
   }, [dispatch]);
-  return (
-    <>
-
-      <Router>
-      <Navbar isAuth={isAuthenticated} />
-
+  return isLoading ? (
+    <Loadingscreen />
+  ) : ( 
+  <Router>
+      {isAuthenticated ? <Navbar isAuth={isAuthenticated}/> : undefined}
         <Switch>
           <Route path="/auth">
             <Authenticate />
@@ -87,8 +80,7 @@ const Navigation = () => {
           </PrivateRoute>
         </Switch>
       </Router>
-    </>
-  );
-};
+    )
+  }
 
 export default Navigation;
