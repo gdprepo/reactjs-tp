@@ -2,7 +2,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {disconnectUser} from '../User/userEffects'
 
 const Collapse = styled.div.attrs({

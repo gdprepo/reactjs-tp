@@ -14,6 +14,7 @@ const Container = styled.div.attrs({
   className: 'container',
 })`
   width: 100vw;
+  margin-top: 1em;
 `
 
 const Button = styled.button`
@@ -49,9 +50,9 @@ const Profile = ({props}) => {
 
   return (
     <Container>
-        <h2>Voici les informaitons de votre Profil</h2>
+        <h2>Voici les informations de votre Profil</h2>
       
-        <p>Vous êtes connecter en tant que { props.name } { props.game }</p>
+        <p>Vous êtes connecté en tant que { props.name } { props.game }</p>
         <img src={props.avatar} alt="User avatar" />
 
 

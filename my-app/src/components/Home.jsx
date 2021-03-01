@@ -1,61 +1,84 @@
 import React from 'react'
-import Logo from './Logo'
-import Links from './Links'
 import styled from 'styled-components'
-import {
-    Route,
-    Redirect,
-    BrowserRouter as Router,
-    Switch,
-    Link,
-  } from "react-router-dom";
+import {Link} from "react-router-dom";
+import backg from '../assets/Music.gif'
 
 const Container = styled.div.attrs({
   className: 'container',
 })`
   width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+const ModalLine = styled.div`
+  position: absolute;
+  background-color: rgb(0 0 0 / 26%);
+  filter: blur(1px);
+  padding: 2em;
+  border-radius: 10em;
+  top: 0;
+  transform: translateY(40vh);
+`
+
+const Line = styled.h2`
+  font-family: 'MonumentExtendedR';
+  color: white;
+  font-size: 5em;
+  margin: 0;
+  padding: 0;
+`
+
+const ModalBtn = styled.div`
+  filter: blur(1px);
+  position: absolute;
+  top: 0;
+  transform: translateY(70vh);
 `
 
 const Button = styled.button`
-  background-color: black;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
   color: white;
-  float: right;
-  padding: 10px 50px;
-  border-radius: 5px;
-  outline: 0;
-  text-transform: uppercase;
-  margin: 10px 0px;
-  cursor: pointer;
-  box-shadow: 0px 2px 2px lightgray;
-  transition: ease background-color 250ms;
+  font-size: 3em;
+  font-family: 'MonumentExtendedR';
+  padding: 0.5em;
+  border-radius: 10em;
   &:hover {
-    color: black;
-    background-color: white;
+    animation: gradient 5s ease infinite;
   }
-  &:disabled {
-    cursor: default;
-    opacity: 0.7;
-  }
-`;
 
-const Nav = styled.nav.attrs({
-  className: 'navbar navbar-expand-lg navbar-dark bg-dark',
-})`
-  margin-bottom: 20px;
-  width: inherit;
+  @keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 `
 
 const Home = ({props}) => {
-
   return (
     <Container>
-        <Link to="/game">
-            <Button variant="primary">Lancer une partie</Button>{' '}
-        </Link>
-        
-        <p>Vous êtes connecter en tant que { props.name }</p>
+        <img src={backg} alt='' style={{height: 100+'vh', width: 100+'vw', objectFit: 'cover', position: 'absolute', top: 0, left: 0}} ></img>
 
+        <ModalLine>
+          <Line>On se fait une partie ?</Line>
+        </ModalLine>
 
+        <ModalBtn>
+          <Link to="/game">
+              <Button>Lancer une partie</Button>
+          </Link>
+        </ModalBtn>
     </Container>
   )
 }

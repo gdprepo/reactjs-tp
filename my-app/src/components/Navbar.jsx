@@ -14,8 +14,8 @@ const Container = styled.div.attrs({
 const Nav = styled.nav.attrs({
   className: 'navbar navbar-expand-lg navbar-dark bg-dark',
 })`
-  margin-bottom: 20px;
   width: inherit;
+  z-index: 11;
 `
 
 const Navbar = ({isAuth}) => {

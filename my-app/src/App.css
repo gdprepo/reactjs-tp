@@ -1,4 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@font-face {
+  font-family: 'MonumentExtendedR';
+  src: local('MonumentExtendedR'), url('./assets/fonts/MonumentExtended-Regular.otf') format('truetype')
+}
 
 * {
   font-family: 'Poppins', sans-serif;
