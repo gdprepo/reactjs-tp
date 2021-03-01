@@ -42,7 +42,7 @@ const Links = ({auth}) => {
                           (<Link to="" className="nav-link">
                                 S'identifier
                             </Link>) :
-                            (<Link to="" className="nav-link">
+                            (<Link to="/profile" className="nav-link">
                                 Mon profil
                             </Link>)
                         }

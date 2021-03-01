@@ -9,7 +9,8 @@ import {
   Link,
 } from "react-router-dom";
 import { Navbar } from "../components";
-import { Profile } from "../components";
+import { Home } from "../components";
+
 // import { Players } from "../Players/Players";
 // import { Questions } from "../Questions/Questions";
 // import { Stats } from "../Stats/Stats";
@@ -17,6 +18,8 @@ import { Authenticate } from "../User/Authenticate";
 import { disconnectUser } from "../User/userEffects";
 import { launchSequence } from "./appEffects";
 import { Game } from "../components";
+import { Profile } from "../components";
+
 
 import "./Navigation.css";
 import api from "../api";
@@ -55,27 +58,27 @@ const Navigation = () => {
   }, [dispatch]);
   return (
     <>
-      <Navbar isAuth={isAuthenticated} />
 
       <Router>
+      <Navbar isAuth={isAuthenticated} />
 
-        {isAuthenticated ? (
-          true
-        ) : undefined } 
-          <Switch>
-            <Route path="/auth">
-              <Authenticate />
-            </Route>
+        <Switch>
+          <Route path="/auth">
+            <Authenticate />
+          </Route>
 
-            <PrivateRoute path="/game">
-              <Game />
-            </PrivateRoute>
-            <PrivateRoute path="/">
-              <Profile props={player} />
-            </PrivateRoute>
+          <PrivateRoute path="/profile">
+            <Profile props={player} />
+          </PrivateRoute>
 
-          </Switch>
-        )
+          <PrivateRoute path="/game">
+            <Game />
+          </PrivateRoute>
+
+          <PrivateRoute path="/">
+            <Home props={player} />
+          </PrivateRoute>
+        </Switch>
       </Router>
     </>
   );

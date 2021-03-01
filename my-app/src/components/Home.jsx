@@ -45,17 +45,19 @@ const Nav = styled.nav.attrs({
   width: inherit;
 `
 
-const Profile = ({props}) => {
+const Home = ({props}) => {
 
   return (
     <Container>
-        <h2>Voici les informaitons de votre Profil</h2>
-``        
+        <Link to="/game">
+            <Button variant="primary">Lancer une partie</Button>{' '}
+        </Link>
+        
         <p>Vous êtes connecter en tant que { props.name }</p>
-        <img src={props.avatar} alt="User avatar" />
+
 
     </Container>
   )
 }
 
-export default Profile
+export default Home
