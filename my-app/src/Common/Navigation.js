@@ -9,18 +9,23 @@ import {
   Link,
 } from "react-router-dom";
 import { Navbar, Loadingscreen } from "../components";
+import { Home } from "../components";
+
 // import { Players } from "../Players/Players";
 // import { Questions } from "../Questions/Questions";
 // import { Stats } from "../Stats/Stats";
 import { Authenticate } from "../User/Authenticate";
 import { launchSequence } from "./appEffects";
+import { Game } from "../components";
+import { Profile } from "../components";
+
+
 import "./Navigation.css";
 // import loadingGif from '../assets/loading.gif';
+import api from "../api";
 
 const PrivateRoute = ({ children, ...rest }) => {
-  const isAuthenticated = useSelector(
-    (state) => state.user.isAuthenticated
-  );
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
   return (
     <Route
       {...rest}
@@ -61,19 +66,22 @@ const Navigation = () => {
           <Route path="/auth">
             <Authenticate />
           </Route>
-          <PrivateRoute path="/questions">
-            <p>Link</p>
+
+          <PrivateRoute path="/profile">
+            <Profile props={player} />
           </PrivateRoute>
-          <PrivateRoute path="/players/:playerId">
-            <p>Link</p>
+
+          <PrivateRoute path="/game">
+            <Game />
           </PrivateRoute>
-          <PrivateRoute path="/players">
-            <p>Link</p>
+
+          <PrivateRoute path="/">
+            <Home props={player} />
           </PrivateRoute>
         </Switch>
-      )}
+        )}
       </Router>
-    );
-  };
+    )
+  }
 
 export default Navigation;

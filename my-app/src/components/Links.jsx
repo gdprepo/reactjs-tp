@@ -43,13 +43,10 @@ const Links = ({auth}) => {
                           (<Link to="/auth" className="nav-link">
                                 Sign in
                             </Link>) :
-                            (
-                            <Link to="/auth" onClick={() => disconnectUser()} className="nav-link">
-                                Sign out
-                            </Link>
-                            )
+                            (<Link to="/profile" className="nav-link">
+                                Mon profil
+                            </Link>)
                         }
-
                         </Item>
                     </List>
                 </Collapse>
