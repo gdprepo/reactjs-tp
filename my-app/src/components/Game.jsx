@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import api from "../api";
 // import { Alert } from "react-native";
 import { useDispatch } from "react-redux";
+import Gameplay from "./Gameplay"
 
 import Logo from './Logo'
 import Links from './Links'
@@ -72,6 +73,39 @@ const Game = () => {
     opacity: 0.7;
   }
 `;
+  // return (
+  //   <div
+  //     style={{
+  //       justifyContent: "flex-start",
+  //       alignItems: "center",
+  //       flex: 1,
+  //       padding: 32,
+  //     }}
+  //   >
+  //   <Container>
+
+  //       <h1 style={{ marginBottom: 64 }}>
+  //           Game
+  //       </h1>
+
+  //   </Container>
+  //      {answers && answers.length > 0 ? (
+  //       <div>
+  //        <h2>Votre score: {score}</h2>
+  //         <h3 category="h3">Merci d'avoir joué</h3>
+  //        <Button onClick={() => getNewGame()}>New Game</Button>
+  //       </div>
+  //     ) : questions && questions.length > 0 ? (
+  //     //  <Gameplay questions={questions} finishGame={finishGame} />
+  //     <Button onClick={() => getNewGame()}>New Game</Button>
+     
+     
+  //     ) : (
+  //       <button onClick={() => getNewGame()}>New Game</button>
+  //     )}
+  //   </div>
+  // );
+
   return (
     <div
       style={{
@@ -81,26 +115,19 @@ const Game = () => {
         padding: 32,
       }}
     >
-    <Container>
-
-        <h1 style={{ marginBottom: 64 }}>
-            Game
-        </h1>
-
-    </Container>
-       {answers && answers.length > 0 ? (
+      <h1 category="h1" style={{ marginBottom: 64 }}>
+        Game
+      </h1>
+      {answers && answers.length > 0 ? (
         <div>
-         <h2>Votre score: {score}</h2>
-          <h3 category="h3">Merci d'avoir joué</h3>
-         <Button onClick={() => getNewGame()}>New Game</Button>
+          <p category="h2">Votre score: {score}</p>
+          <p category="h3">Merci d'avoir joué</p>
+          <Button onClick={() => getNewGame()}>New Game</Button>
         </div>
       ) : questions && questions.length > 0 ? (
-      //  <Gameplay questions={questions} finishGame={finishGame} />
-      <Button onClick={() => getNewGame()}>New Game</Button>
-     
-     
+        <Gameplay questions={questions} finishGame={finishGame} />
       ) : (
-        <button onClick={() => getNewGame()}>New Game</button>
+        <Button onClick={() => getNewGame()}>New Game</Button>
       )}
     </div>
   );
